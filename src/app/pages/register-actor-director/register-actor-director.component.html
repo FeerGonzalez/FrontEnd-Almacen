@@ -1,0 +1,38 @@
+<p-toast></p-toast>
+<div class="flex justify-content-center align-items-center min-h-screen w-full">
+    <p-card header="Registrar Actor o Director" class="w-10">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="flex flex-column gap-2">
+            <!-- Campo de Nombre -->
+            <div class="field flex flex-column gap-1">
+                <label for="nombre">Nombre</label>
+                <input type="text" pInputText formControlName="nombre" class="w-5" required />
+            </div>
+
+            <!-- Campo de Apellido -->
+            <div class="field flex flex-column gap-1">
+                <label for="apellido">Apellido</label>
+                <input type="text" pInputText formControlName="apellido" class="w-5" required />
+            </div>
+
+            <!-- Selección de Actor o Director -->
+            <div class="field flex flex-column gap-1">
+                <label for="tipo" class="w-full">Tipo</label>
+                <br>
+                <p-dropdown 
+                    [options]="tipoOptions" 
+                    formControlName="tipo" 
+                    optionLabel="label" 
+                    placeholder="Seleccionar Tipo"
+                    class="w-full">
+                </p-dropdown>
+            </div>
+
+            <!-- Botones de Guardar y Cancelar -->
+            <div class="flex gap-2">
+                <p-button label="Guardar" [loading]="isSubmitting" type="submit" [disabled]="registerForm.invalid" />
+                <p-button label="Cancelar" severity="secondary" (click)="onCancel()" />
+            </div>
+        </form>
+    </p-card>
+</div>
+
