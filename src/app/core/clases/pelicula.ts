@@ -4,11 +4,11 @@ export class Pelicula {
     sinopsis !: string;
     precio !: number;
     fechaSalida !: string;
-    genero !: string;
+    idGenero !: number;
     condicion !: string;
     imagenPequena !: ImageBitmap;
     imagenGrande !: ImageBitmap;
-    directores !: number[];
-    actores !: number[];
+    idsDirectores !: number[];
+    idsActores !: number[];
 }
 

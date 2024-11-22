@@ -6,14 +6,20 @@ import { KeycloakService } from 'keycloak-angular';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterModule, NavbarComponent],
+  imports: [
+    RouterOutlet, 
+    RouterModule, 
+    NavbarComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'FrontEnd-Almacen_Peliculas';
 
-  constructor(private keycloakService: KeycloakService) {}
+  constructor(
+    private keycloakService: KeycloakService
+  ) {}
 
   /*
   ngOnInit(): void {
@@ -28,7 +34,7 @@ export class AppComponent {
       });
     }
   }
-    */
+  */
 
   onSearch(query: string): void {
     console.log('Término de búsqueda recibido en AppComponent:', query);

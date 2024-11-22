@@ -44,11 +44,27 @@
                 </p-dropdown>
             </div>
 
-            <!-- Campo de Genero -->
+            <!-- Selección de Generos -->
             <div class="field flex flex-column gap-1">
                 <label for="genero">Genero</label>
-                <input type="text" pInputText formControlName="genero" class="w-5 shortInput" />
+                <p-dropdown 
+                    [options]="generoOptions" 
+                    formControlName="genero" 
+                    optionLabel="label" 
+                    placeholder="Seleccionar Genero">
+                </p-dropdown>
             </div>
+            <!--
+            <div class="field flex flex-column gap-1">
+                <label for="generos">Generos</label>
+                <p-multiSelect 
+                    [options]="generosList" 
+                    formControlName="generos" 
+                    optionLabel="nombre" 
+                    placeholder="Selecciona los generos">
+                </p-multiSelect>
+            </div>
+            -->
 
             <!-- Selección de Directores -->
             <div class="field flex flex-column gap-1">

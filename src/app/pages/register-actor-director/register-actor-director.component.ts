@@ -11,6 +11,7 @@ import { CardModule } from 'primeng/card';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 import { ActoresService } from '../../core/services/actores.service';
 import { DirectorService } from '../../core/services/director.service';
@@ -45,7 +46,8 @@ export class RegisterActorDirectorComponent implements OnInit {
     private http: HttpClient,
     private router: Router,
     private actorService: ActoresService,
-    private directorService: DirectorService
+    private directorService: DirectorService,
+    private messageService: MessageService
   ) {
     this.registerForm = this.fb.group({
       nombre: ['', Validators.required],
@@ -85,8 +87,18 @@ export class RegisterActorDirectorComponent implements OnInit {
         this.isSubmitting = false;
         // Mostrar un mensaje de éxito
         //this.router.navigate(['/home']); // O redirige a donde lo necesites
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Guardado',
+          detail: this.registerForm.get('tipo')?.value.label === 'Actor' ? 'Actor guardado exitosamente' : 'Director guardado exitosamente'
+        });
       },
       error: (err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: this.registerForm.get('tipo')?.value.label === 'Actor' ? 'Error al guardar el Actor' : 'Error al guardar el Director'
+        });
         this.isSubmitting = false;
       }
     });

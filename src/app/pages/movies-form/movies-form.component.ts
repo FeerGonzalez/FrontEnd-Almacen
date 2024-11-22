@@ -6,6 +6,7 @@ import { Director } from '../../core/clases/director';
 import { MoviesService } from '../../core/services/movies.service';
 import { ActoresService } from '../../core/services/actores.service';
 import { DirectorService } from '../../core/services/director.service';
+import { GeneroService } from '../../core/services/genero.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
@@ -43,10 +44,11 @@ export class MoviesFormComponent implements OnInit {
   edit = false;
   actorsList: Actor[] = [];
   directoresList: Director[] = [];
+  generoOptions: { label: string, value: any }[] = [];
 
   condicionOptions = [
-    { label: 'Nuevo', value: 'Nuevo' },
-    { label: 'Usado', value: 'Usado' }
+    { label: 'Nuevo', value: 'nuevo' },
+    { label: 'Usado', value: 'usado' }
   ];
   isSubmitting = false;
 
@@ -55,6 +57,7 @@ export class MoviesFormComponent implements OnInit {
     private movieService: MoviesService,
     private actorService: ActoresService,
     private directorService: DirectorService,
+    private generoService: GeneroService,
     private activatedRoute: ActivatedRoute,
     private messageService: MessageService,
     private router: Router,
@@ -67,6 +70,7 @@ export class MoviesFormComponent implements OnInit {
       precio: ['', Validators.required],
       fechaSalida: ['', Validators.required],
       condicion: ['', Validators.required],
+      //generos: [[], Validators.required],
       genero: ['', Validators.required],
       actores: [[], Validators.required],       // Aquí especificamos "actores" en lugar de "actorsList"
       directores: [[], Validators.required]     // Aquí especificamos "directores" en lugar de "directoresList"
@@ -77,6 +81,7 @@ export class MoviesFormComponent implements OnInit {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
     this.getActores();
     this.getDirectores();
+    this.getGeneros();
 
     if (id && id !== 'new') {
       this.edit = true;
@@ -115,22 +120,39 @@ export class MoviesFormComponent implements OnInit {
     pelicula.titulo = this.movieForm.get('titulo')?.value;
     pelicula.sinopsis = this.movieForm.get('sinopsis')?.value;
     pelicula.precio = this.movieForm.get('precio')?.value;
-    pelicula.fechaSalida = this.movieForm.get('fechaSalida')?.value;
-    pelicula.condicion = this.movieForm.get('condicion')?.value;
-    pelicula.genero = this.movieForm.get('genero')?.value;
+
+    const fechaSalida: Date = this.movieForm.get('fechaSalida')?.value;
+    const formattedDate = fechaSalida.toLocaleDateString('es-ES');
+    pelicula.fechaSalida = formattedDate;
+
+    const condicion = this.movieForm.get('condicion')?.value;
+    pelicula.condicion = condicion.value;
+
+    const genero = this.movieForm.get('genero')?.value;
+    pelicula.idGenero = genero.value;
 
     const directores = this.movieForm.get('directores')?.value;
     const idsDirectores = directores ? directores.map((director: { id: number }) => director.id) : [];
+    pelicula.idsDirectores = idsDirectores;
 
     const actores = this.movieForm.get('actores')?.value;
     const idsActores = actores ? actores.map((actor: { id: number }) => actor.id) : [];
-
-    pelicula.directores = idsDirectores;
-    pelicula.actores = idsActores;
-
-    console.log(this.movieForm.get('directores')?.value);
-    console.log (idsDirectores);
-    console.log(this.movieForm.get('actores')?.value);
+    pelicula.idsActores = idsActores;
+    
+    //Console.Logs
+    /*
+    console.log('Titulo:' + this.movieForm.get('titulo')?.value);
+    console.log('Sinopsis:' + this.movieForm.get('sinopsis')?.value);
+    console.log('Precio:' + this.movieForm.get('precio')?.value);
+    console.log('Condicion:' + condicion.value);
+    console.log('Fecha de Salida:', formattedDate);
+    console.log(pelicula.fechaSalida);
+    console.log ('id genero:' + genero.value);
+    console.log ('ids de Directores:' + idsDirectores);
+    console.log ('ids de Actores:' + idsActores);
+    console.log(this.movieForm.value);
+    console.log(pelicula)
+    */
 
     this.movieService.createMovie(pelicula).subscribe({
       next: () => {
@@ -139,7 +161,7 @@ export class MoviesFormComponent implements OnInit {
           summary: 'Guardado',
           detail: 'Película guardada exitosamente'
         });
-        this.router.navigateByUrl('/');
+        //this.router.navigateByUrl('/');
       },
       error: () => {
         this.messageService.add({
@@ -150,6 +172,7 @@ export class MoviesFormComponent implements OnInit {
       },
       complete: () => {
         this.isSaveInProgress = false;
+        this.isSubmitting = false;
       }
     });
   }
@@ -182,6 +205,7 @@ export class MoviesFormComponent implements OnInit {
       },
       complete: () => {
         this.isSaveInProgress = false;
+        this.isSubmitting = false;
       }
     });
   }
@@ -216,13 +240,30 @@ export class MoviesFormComponent implements OnInit {
     });
   }
 
+  getGeneros() {
+    this.generoService.getGeneros().subscribe({
+        next: (foundGeneros) => {
+            this.generoOptions = foundGeneros.map(genero => ({
+                label: genero.nombre,
+                value: genero.id
+            }));
+        },
+        error: () => {
+            this.messageService.add({
+                severity: 'error',
+                summary: 'Error',
+                detail: 'No se pudieron cargar los generos'
+            });
+        }
+    });
+  }
+
   onSubmit() {
     this.isSubmitting = true;
     if (this.edit) {
       this.updateMovie();
     } else {
       this.createMovie();
-      
     }
   }
 

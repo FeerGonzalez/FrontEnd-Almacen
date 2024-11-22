@@ -44,3 +44,8 @@ export const KeycloakInitializerProvider: Provider = {
   deps: [KeycloakService]
 }
 
+//Close session
+export function closeSession(keycloak: KeycloakService){
+  keycloak.logout();
+}
+

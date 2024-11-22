@@ -7,58 +7,70 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { KeycloakService } from 'keycloak-angular';
 import { Location } from '@angular/common';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-home',
   providers: [KeycloakService],
   standalone: true,
-  imports: [ButtonModule, CardModule, RouterModule, CommonModule],
+  imports: [
+    ButtonModule, 
+    CardModule, 
+    RouterModule, 
+    CommonModule
+  ],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']  // Nota: Corregido styleUrl a styleUrls para que acepte un arreglo.
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  isAuthenticated !: boolean;
-  userToken: string | undefined;
-  movies: Pelicula[] = [];
+  moviesList: Pelicula[] = [];
   
   constructor(
     private movieService: MoviesService,
     private keycloakService: KeycloakService,
-    private location: Location
+    private location: Location,
+    private messageService: MessageService,
   ) {}
 
   ngOnInit(): void {
-    // Verifica si el usuario está autenticado
-    this.isAuthenticated = this.keycloakService.isLoggedIn();
-    console.log(this.keycloakService.isLoggedIn());
-    if (this.isAuthenticated) {
-      // Limpia los parámetros de la URL (opcional)
-      //this.location.replaceState('/');
-
-      // Obtiene el token de acceso
-      this.keycloakService.getToken().then(userToken => {this.userToken = userToken});
-      console.log('Access Token:', this.userToken);
-
-      // Llama a getAllMovies solo si el usuario está autenticado
-      this.getAllMovies();
-    } else {
-      this.keycloakService.login().then();
-      console.log(this.keycloakService);
-      console.log('User is not authenticated');
-    }
+    this.getMovies();
   }
 
-  getAllMovies(): void {
-    this.movieService.getMovies().subscribe({
-      next: (data) => this.movies = data,
-      error: (err) => console.error('Error al obtener las películas:', err)
+  getMovies(): void {
+    this.movieService.getOnlyMovies().subscribe({
+      next: (foundMovies) => {
+        console.log('Datos recibidos:', foundMovies);
+        this.moviesList = foundMovies;
+      },
+      error: () => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'No se pudieron cargar las peliculas'
+        });
+      }
     });
   }
 
   deleteMovieById(id: number): void {
+    console.log(id);
     this.movieService.deleteMovieById(id).subscribe({
-      next: () => this.movies = this.movies.filter(movie => movie.id !== id),
-      error: (err) => console.error('Error al eliminar la película:', err)
+      next: () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Eliminado',
+          detail: 'La película fue eliminada con éxito'
+        });
+
+        this.moviesList = this.moviesList.filter(movie => movie.id !== id);
+      },
+      error: () => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'No se pudo eliminar la película'
+        });
+      }
     });
   }
 

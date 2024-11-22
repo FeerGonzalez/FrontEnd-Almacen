@@ -37,5 +37,18 @@ body{
 .cart-button:hover {
     color: #ffcc00; /* Cambia el color del ícono al pasar el cursor */
 }
+ 
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que las cartas se envuelvan */
+    gap: 1rem; /* Espacio entre cartas */
+    justify-content: center; /* Centra las cartas horizontalmente */
+  }
   
+  .card {
+    flex: 1 1 calc(33.33% - 1rem); /* Ocupa un tercio del ancho menos el espacio entre cartas */
+    max-width: calc(33.33% - 1rem); /* Asegura un máximo de 3 cartas por fila */
+    box-sizing: border-box; /* Asegura que padding y border no afecten el ancho */
+  }
   

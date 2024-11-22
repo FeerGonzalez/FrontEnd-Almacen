@@ -1,22 +1,31 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
-import { Pelicula } from '../clases/pelicula';
 import { KeycloakService } from 'keycloak-angular';
+import { Pelicula } from '../clases/pelicula';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MoviesService {
+export class ImagenService {
 
-  private apiUrl = 'http://localhost:8080/almacen/pelicula'
+  private apiUrl = 'http://localhost:8080/almacen/pelicula/imagen'
 
   constructor(
     private http:HttpClient, 
     private keycloakService: KeycloakService
   ) {}
 
-  getMovies():Observable<Pelicula[]>{
+  agregarImagen(pelicula:Pelicula){
+    //return this.http.get<Pelicula>('${this.apiUrl}/${id}');
+  }
+
+  updateImagen(pelicula:Pelicula){
+
+  }
+
+  /*
+  getImagenes():Observable<Pelicula[]>{
     return this.http.get<Pelicula[]>(this.apiUrl);
   }
 
@@ -37,6 +46,7 @@ export class MoviesService {
   }
 
   deleteMovieById(id:number){
-    return this.http.delete(`${this.apiUrl}/${id}`);
+    return this.http.delete('${this.apiUrl}/${id}');
   }
+  */
 }
