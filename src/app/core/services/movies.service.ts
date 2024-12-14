@@ -5,38 +5,39 @@ import { Pelicula } from '../clases/pelicula';
 import { KeycloakService } from 'keycloak-angular';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MoviesService {
-
-  private apiUrl = 'http://localhost:8080/almacen/pelicula'
+  private apiUrl = '/almacen/pelicula';
 
   constructor(
-    private http:HttpClient, 
+    private http: HttpClient,
     private keycloakService: KeycloakService
   ) {}
 
-  getMovies():Observable<Pelicula[]>{
+  getMovies(): Observable<Pelicula[]> {
     return this.http.get<Pelicula[]>(this.apiUrl);
   }
 
   getOnlyMovies(): Observable<Pelicula[]> {
-    return this.http.get<{ data: Pelicula[] }>(this.apiUrl).pipe(map(response => response.data));
+    return this.http
+      .get<{ data: Pelicula[] }>(this.apiUrl)
+      .pipe(map((response) => response.data));
   }
 
-  getMoviesById(id:number):Observable<Pelicula>{
-    return this.http.get<Pelicula>('${this.apiUrl}/${id}');
+  getMoviesById(id: number): Observable<Pelicula> {
+    return this.http.get<Pelicula>(`${this.apiUrl}/${id}`);
   }
 
-  createMovie(movie:Pelicula):Observable<Pelicula>{
+  createMovie(movie: Pelicula): Observable<Pelicula> {
     return this.http.post<Pelicula>(this.apiUrl, movie);
   }
 
-  updateMovie(movie:Pelicula){
+  updateMovie(movie: Pelicula) {
     return this.http.put(this.apiUrl, movie);
   }
 
-  deleteMovieById(id:number){
+  deleteMovieById(id: number) {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
 }

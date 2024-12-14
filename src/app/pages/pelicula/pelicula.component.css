@@ -1,0 +1,84 @@
+.container {
+  margin: 1vh 4vw;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+
+  --bg-navbar-color: #301a1a;
+}
+
+h2,
+h3,
+p,
+button {
+  color: var(--bg-navbar-color);
+}
+
+h2 {
+  margin: 4vh 0;
+  font-size: 3em;
+  font-family: roboto-bold;
+}
+
+h3 {
+  margin: 2vh 0;
+  font-size: 1.5em;
+  font-family: roboto-bold;
+}
+
+p,
+button {
+  font-size: 1em;
+  font-family: roboto-regular;
+}
+
+.left {
+  padding: 0 1vw;
+}
+
+.right {
+  padding: 0 33%;
+}
+
+.img {
+  height: 42vh;
+  width: 16vw;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.relleno {
+  height: 38vh;
+  width: 100%;
+}
+
+.precio {
+  height: 4vh;
+  width: 100%;
+  text-align: center;
+}
+
+.precio p {
+  font-family: roboto-bold;
+}
+
+.payment {
+  width: 16vw;
+  display: flex;
+}
+
+.payment button {
+  height: 4vh;
+}
+
+.comprar {
+  width: 34%;
+}
+
+.carrito {
+  width: 66%;
+}

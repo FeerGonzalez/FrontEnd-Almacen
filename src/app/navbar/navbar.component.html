@@ -12,19 +12,23 @@
     <div class="navbar-right">
       <p-menu [model]="menuItems" popup #menu></p-menu>
       <button pButton type="button" icon="pi pi-bars" label="Opciones" 
-              class="p-button-text" (click)="menu.toggle($event)"></button>
+              class="p-button-text" (click)="menu.toggle($event)">Opciones</button>
 
       <!-- Shopping Cart Icon 
       <button class="cart-button" (click)="goToCart()">
         🛒 <span *ngIf="cartItemCount">{{ cartItemCount }}</span>
       </button>
       -->
+
+      <ul *ngIf="items">
+        <app-item-nav-bar *ngFor="let item of items" [data]="item"></app-item-nav-bar>
+      </ul>
   
       <!-- User Profile Icon 
       <button class="profile-button" (click)="goToProfile()">👤</button>-->
       <p-menu [model]="menuItemsProfile" popup #menuProfile></p-menu>
       <button pButton type="button" icon="pi pi-bars" label="Opciones" 
-              class="p-button-text" (click)="menuProfile.toggle($event)"></button>
+              class="p-button-text" (click)="menuProfile.toggle($event)">Usuario</button>
     </div>
     
   </nav>

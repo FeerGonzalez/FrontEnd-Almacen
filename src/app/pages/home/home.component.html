@@ -1,8 +1,11 @@
 <div class="cards-container">
-  <p-card *ngFor="let movie of moviesList; trackBy: trackById"
+  <app-card *ngFor="let pelicula of moviesList" [pelicula]="pelicula">
+
+  </app-card>
+  <!-- <p-card *ngFor="let movie of moviesList; trackBy: trackById"
           [header]="movie.titulo"
           [style]="{ width: '360px' }"
-          class="m-2">
+          class="m-2"> -->
     <!--
     <ng-template pTemplate="header">
 
@@ -18,16 +21,16 @@
     </ng-template>
     -->
 
-    <ng-template pTemplate="header">
+    <!-- <ng-template pTemplate="header">
       <img 
-        [src]="movie.imagenPequena || 'https://k8s-lia.unrn.edu.ar/grupo02/1_LARGE'" 
+        [src]="'http://localhost:9000/portada-grande/2_LARGE'" 
         alt="Imagen de película" 
         style="width: 100%; height: 100%; object-fit: cover;"
       />
     </ng-template>
 
     <p>
-      Sinopsis: {{ movie.sinopsis }}
+      {{ movie.sinopsis }}
     </p>
     <p>
       Fecha de salida: {{ movie.fechaSalida }} 
@@ -41,7 +44,8 @@
         
       </div>
     </ng-template>
-  </p-card>
+  </p-card> -->
+  
 </div>
 
 

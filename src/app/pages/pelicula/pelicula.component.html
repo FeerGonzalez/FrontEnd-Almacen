@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="left">
+    <h2>{{ pelicula.titulo }}</h2>
+    <h3>Sinopsis</h3>
+    <p>{{ pelicula.sinopsis }}</p>
+    <h3>Genero</h3>
+    <p>{{ pelicula.genero.nombre }}</p>
+    <h3>Fecha de Salida</h3>
+    <p>{{ pelicula.fechaSalida }}</p>
+    <h3>Condicion</h3>
+    <p>{{ pelicula.condicion }}</p>
+    <h3>Director</h3>
+    <p *ngFor="let director of pelicula.directores">
+      {{ director.nombre + " " + director.apellido }}
+    </p>
+    <h3>Actores</h3>
+    <p *ngFor="let actor of pelicula.actores">
+      {{ actor.nombre + " " + actor.apellido }}
+    </p>
+    <h3>Portada</h3>
+    <p>{{ pelicula.portada }}</p>
+  </div>
+  <div class="right">
+    <div class="img">
+      <div class="relleno"></div>
+      <div class="precio">
+        <p>{{ pelicula.precio }}</p>
+      </div>
+    </div>
+    <div class="payment">
+      <button class="comprar">Comprar</button>
+      <button class="carrito">Agregar al Carrito</button>
+    </div>
+  </div>
+</div>

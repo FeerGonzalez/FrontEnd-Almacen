@@ -5,13 +5,15 @@ import { MenuItemContent, MenuModule } from 'primeng/menu';
 import { ButtonModule } from 'primeng/button';
 import { MenuItem } from 'primeng/api';
 import { KeycloakService } from 'keycloak-angular';
+import { ItemNavBar } from '../components/item-nav-bar/item-nav-bar-model';
+import { ItemNavBarComponent } from '../components/item-nav-bar/item-nav-bar.component';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, MenuModule],
+  imports: [CommonModule, MenuModule, ItemNavBarComponent],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
   cartItemCount: number = 0; // This should reflect the actual cart count
@@ -20,12 +22,26 @@ export class NavbarComponent {
   menuItems: MenuItem[] = [];
   menuItemsProfile: MenuItem[] = [];
 
+  items: ItemNavBar[] = Array<ItemNavBar>();
+
   constructor(
     private router: Router,
     private keycloakService: KeycloakService
   ) {}
 
   ngOnInit(): void {
+    this.items = [
+      {
+        label: 'Opciones',
+        childs: [
+          {
+            label: 'Agregar Película',
+            enlace: 'movies-form/new',
+          },
+        ],
+      },
+    ];
+
     this.menuItems = [
       {
         label: 'Agregar Película',
@@ -41,15 +57,15 @@ export class NavbarComponent {
         label: 'Agregar Género',
         icon: 'pi pi-tag',
         routerLink: 'genero-form',
-      }
+      },
     ];
 
     this.menuItemsProfile = [
       {
         label: 'Cerrar Sesion',
-        command: () => this.logout()
-      }
-    ]
+        command: () => this.logout(),
+      },
+    ];
   }
 
   onSearch(event: any) {
@@ -66,12 +82,13 @@ export class NavbarComponent {
   }
 
   logout(): void {
-    this.keycloakService.logout().then(() => {
-      console.log('Sesión cerrada exitosamente');
-    }).catch(err => {
-      console.error('Error al cerrar sesión:', err);
-    });
+    this.keycloakService
+      .logout()
+      .then(() => {
+        console.log('Sesión cerrada exitosamente');
+      })
+      .catch((err) => {
+        console.error('Error al cerrar sesión:', err);
+      });
   }
-
-  
 }

@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Pelicula } from '../../core/clases/pelicula';
 import { Actor } from '../../core/clases/actor';
 import { Director } from '../../core/clases/director';
@@ -35,32 +41,31 @@ import { DropdownModule } from 'primeng/dropdown';
     DropdownModule,
   ],
   templateUrl: './movies-form.component.html',
-  styleUrls: ['./movies-form.component.css']
+  styleUrls: ['./movies-form.component.css'],
 })
 export class MoviesFormComponent implements OnInit {
-  
   movieForm!: FormGroup;
   isSaveInProgress = false;
   edit = false;
   actorsList: Actor[] = [];
   directoresList: Director[] = [];
-  generoOptions: { label: string, value: any }[] = [];
+  generoOptions: { label: string; value: any }[] = [];
 
   condicionOptions = [
     { label: 'Nuevo', value: 'nuevo' },
-    { label: 'Usado', value: 'usado' }
+    { label: 'Usado', value: 'usado' },
   ];
   isSubmitting = false;
 
   constructor(
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private movieService: MoviesService,
     private actorService: ActoresService,
     private directorService: DirectorService,
     private generoService: GeneroService,
     private activatedRoute: ActivatedRoute,
     private messageService: MessageService,
-    private router: Router,
+    private router: Router
   ) {
     // Configuración del formulario, con campos de actores y directores correctamente nombrados
     this.movieForm = this.fb.group({
@@ -72,8 +77,8 @@ export class MoviesFormComponent implements OnInit {
       condicion: ['', Validators.required],
       //generos: [[], Validators.required],
       genero: ['', Validators.required],
-      actores: [[], Validators.required],       // Aquí especificamos "actores" en lugar de "actorsList"
-      directores: [[], Validators.required]     // Aquí especificamos "directores" en lugar de "directoresList"
+      actores: [[], Validators.required], // Aquí especificamos "actores" en lugar de "actorsList"
+      directores: [[], Validators.required], // Aquí especificamos "directores" en lugar de "directoresList"
     });
   }
 
@@ -98,10 +103,10 @@ export class MoviesFormComponent implements OnInit {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: 'Película no encontrada'
+          detail: 'Película no encontrada',
         });
         this.router.navigateByUrl('/');
-      }
+      },
     });
   }
 
@@ -110,7 +115,7 @@ export class MoviesFormComponent implements OnInit {
       this.messageService.add({
         severity: 'error',
         summary: 'Error',
-        detail: 'Revise los campos e intente nuevamente'
+        detail: 'Revise los campos e intente nuevamente',
       });
       return;
     }
@@ -129,16 +134,20 @@ export class MoviesFormComponent implements OnInit {
     pelicula.condicion = condicion.value;
 
     const genero = this.movieForm.get('genero')?.value;
-    pelicula.idGenero = genero.value;
+    // pelicula.idGenero = genero.value;
 
     const directores = this.movieForm.get('directores')?.value;
-    const idsDirectores = directores ? directores.map((director: { id: number }) => director.id) : [];
-    pelicula.idsDirectores = idsDirectores;
+    const idsDirectores = directores
+      ? directores.map((director: { id: number }) => director.id)
+      : [];
+    // pelicula.idsDirectores = idsDirectores;
 
     const actores = this.movieForm.get('actores')?.value;
-    const idsActores = actores ? actores.map((actor: { id: number }) => actor.id) : [];
-    pelicula.idsActores = idsActores;
-    
+    const idsActores = actores
+      ? actores.map((actor: { id: number }) => actor.id)
+      : [];
+    // pelicula.idsActores = idsActores;
+
     //Console.Logs
     /*
     console.log('Titulo:' + this.movieForm.get('titulo')?.value);
@@ -159,7 +168,7 @@ export class MoviesFormComponent implements OnInit {
         this.messageService.add({
           severity: 'success',
           summary: 'Guardado',
-          detail: 'Película guardada exitosamente'
+          detail: 'Película guardada exitosamente',
         });
         //this.router.navigateByUrl('/');
       },
@@ -167,13 +176,13 @@ export class MoviesFormComponent implements OnInit {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: 'Error al guardar la película'
+          detail: 'Error al guardar la película',
         });
       },
       complete: () => {
         this.isSaveInProgress = false;
         this.isSubmitting = false;
-      }
+      },
     });
   }
 
@@ -182,7 +191,7 @@ export class MoviesFormComponent implements OnInit {
       this.messageService.add({
         severity: 'error',
         summary: 'Error',
-        detail: 'Revise los campos e intente nuevamente'
+        detail: 'Revise los campos e intente nuevamente',
       });
       return;
     }
@@ -192,7 +201,7 @@ export class MoviesFormComponent implements OnInit {
         this.messageService.add({
           severity: 'success',
           summary: 'Guardado',
-          detail: 'Película actualizada exitosamente'
+          detail: 'Película actualizada exitosamente',
         });
         this.router.navigateByUrl('/');
       },
@@ -200,13 +209,13 @@ export class MoviesFormComponent implements OnInit {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: 'Error al actualizar la película'
+          detail: 'Error al actualizar la película',
         });
       },
       complete: () => {
         this.isSaveInProgress = false;
         this.isSubmitting = false;
-      }
+      },
     });
   }
 
@@ -219,9 +228,9 @@ export class MoviesFormComponent implements OnInit {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: 'No se pudieron cargar los actores'
+          detail: 'No se pudieron cargar los actores',
         });
-      }
+      },
     });
   }
 
@@ -234,27 +243,27 @@ export class MoviesFormComponent implements OnInit {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: 'No se pudieron cargar los directores'
+          detail: 'No se pudieron cargar los directores',
         });
-      }
+      },
     });
   }
 
   getGeneros() {
     this.generoService.getGeneros().subscribe({
-        next: (foundGeneros) => {
-            this.generoOptions = foundGeneros.map(genero => ({
-                label: genero.nombre,
-                value: genero.id
-            }));
-        },
-        error: () => {
-            this.messageService.add({
-                severity: 'error',
-                summary: 'Error',
-                detail: 'No se pudieron cargar los generos'
-            });
-        }
+      next: (foundGeneros) => {
+        this.generoOptions = foundGeneros.map((genero) => ({
+          label: genero.nombre,
+          value: genero.id,
+        }));
+      },
+      error: () => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'No se pudieron cargar los generos',
+        });
+      },
     });
   }
 

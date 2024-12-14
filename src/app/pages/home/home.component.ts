@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { KeycloakService } from 'keycloak-angular';
 import { Location } from '@angular/common';
 import { MessageService } from 'primeng/api';
+import { CardComponent } from '../../components/card/card.component';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,8 @@ import { MessageService } from 'primeng/api';
     ButtonModule, 
     CardModule, 
     RouterModule, 
-    CommonModule
+    CommonModule,
+    CardComponent
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']

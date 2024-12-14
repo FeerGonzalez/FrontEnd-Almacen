@@ -1,54 +1,53 @@
-body{
-    background-color: rgba(0, 0, 0, 0.5);
+body {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 /* Estilos generales del navbar */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #333;
-    padding: 10px 20px;
-    color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 10px 20px;
+  color: white;
 }
-  
-  /* Estilos para el lado izquierdo (nombre de la empresa) */
+
+/* Estilos para el lado izquierdo (nombre de la empresa) */
 .navbar-left a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.5em;
-    font-weight: bold;
+  color: white;
+  text-decoration: none;
+  font-size: 1.5em;
+  font-weight: bold;
 }
-  
-  /* Estilos para el lado derecho (carrito de compras) */
+
+/* Estilos para el lado derecho (carrito de compras) */
 .navbar-right {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
-  
+
 .cart-button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    color: white;
-    font-size: 1.5em; /* Ajusta el tamaño del ícono */
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 1.5em; /* Ajusta el tamaño del ícono */
 }
-  
+
 .cart-button:hover {
-    color: #ffcc00; /* Cambia el color del ícono al pasar el cursor */
+  color: #ffcc00; /* Cambia el color del ícono al pasar el cursor */
 }
- 
 
 .cards-container {
-    display: flex;
-    flex-wrap: wrap; /* Permite que las cartas se envuelvan */
-    gap: 1rem; /* Espacio entre cartas */
-    justify-content: center; /* Centra las cartas horizontalmente */
-  }
-  
-  .card {
-    flex: 1 1 calc(33.33% - 1rem); /* Ocupa un tercio del ancho menos el espacio entre cartas */
-    max-width: calc(33.33% - 1rem); /* Asegura un máximo de 3 cartas por fila */
-    box-sizing: border-box; /* Asegura que padding y border no afecten el ancho */
-  }
-  
+  display: flex;
+  flex-wrap: wrap; /* Permite que las cartas se envuelvan */
+  gap: 1rem; /* Espacio entre cartas */
+  justify-content: center; /* Centra las cartas horizontalmente */
+  padding-bottom: 8vh;
+}
+
+.card {
+  flex: 1 1 calc(33.33% - 1rem); /* Ocupa un tercio del ancho menos el espacio entre cartas */
+  max-width: calc(33.33% - 1rem); /* Asegura un máximo de 3 cartas por fila */
+  box-sizing: border-box; /* Asegura que padding y border no afecten el ancho */
+}

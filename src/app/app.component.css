@@ -1,7 +1,7 @@
 :host ::ng-deep .p-menu {
-    width: 200px; 
-  }
-  
-  :host ::ng-deep .p-menuitem {
-    font-size: 14px;
-  }
+  width: 200px;
+}
+
+:host ::ng-deep .p-menuitem {
+  font-size: 14px;
+}
