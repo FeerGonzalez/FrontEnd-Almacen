@@ -1,8 +1,3 @@
-<li (click)="navegar()" class="item">
-    <p>{{data.label}}</p>
-
-    <ul *ngIf="data.childs">
-        <li *ngFor="let item of data.childs">{{item.label}}</li>
-    </ul>
-
-</li>
+<div (click)="navegar()" class="item">
+  <a class="enlace" routerLink="{{ data.enlace }}">{{ data.label }}</a>
+</div>

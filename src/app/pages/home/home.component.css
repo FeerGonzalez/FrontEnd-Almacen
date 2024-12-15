@@ -39,11 +39,13 @@ body {
 }
 
 .cards-container {
-  display: flex;
-  flex-wrap: wrap; /* Permite que las cartas se envuelvan */
-  gap: 1rem; /* Espacio entre cartas */
-  justify-content: center; /* Centra las cartas horizontalmente */
-  padding-bottom: 8vh;
+  margin: 0 6vw;
+  margin-bottom: 8vh;
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 2fr;
+  grid-row-gap: 24px;
 }
 
 .card {

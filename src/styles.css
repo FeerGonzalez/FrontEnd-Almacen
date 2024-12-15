@@ -21,9 +21,14 @@
   src: url(./assets/fonts/Roboto-Bold.ttf);
 }
 
+body {
+  background-color: var(--bg-body-color);
+  background-image: url("assets/images/pattern-cinema-transparent.png");
+  background-size: 6vw;
+}
+
 * {
   --bg-body-color: #f0c69c;
   margin: 0;
   padding: 0;
-  background-color: var(--bg-body-color);
 }

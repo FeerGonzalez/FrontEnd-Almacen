@@ -1,35 +1,48 @@
 <nav class="navbar">
-    <!-- Store Name - Clickable Link -->
-    <a routerLink="/" class="navbar-brand">Tienda de Peliculas</a>
-  
-    <!-- Search Bar in the Center 
-    <div class="search-bar">
-      <input type="text" placeholder="Buscar pelicula" (input)="onSearch($event)" />
-    </div>
-    -->
-  
-    <!-- Right Side - Cart and User Profile -->
-    <div class="navbar-right">
-      <p-menu [model]="menuItems" popup #menu></p-menu>
-      <button pButton type="button" icon="pi pi-bars" label="Opciones" 
-              class="p-button-text" (click)="menu.toggle($event)">Opciones</button>
+  <!-- Store Name - Clickable Link -->
+  <a routerLink="/" class="navbar-brand">Tienda de Peliculas</a>
 
-      <!-- Shopping Cart Icon 
-      <button class="cart-button" (click)="goToCart()">
-        🛒 <span *ngIf="cartItemCount">{{ cartItemCount }}</span>
-      </button>
-      -->
+  <!-- Right Side - Cart and User Profile -->
+  <div class="navbar-right">
+    <!-- <p-menu [model]="menuItems" popup #menu></p-menu>
+    <button
+      pButton
+      type="button"
+      icon="pi pi-bars"
+      label="Opciones"
+      class="p-button-text"
+      (click)="menu.toggle($event)"
+    >
+      Opciones
+    </button> -->
 
-      <ul *ngIf="items">
-        <app-item-nav-bar *ngFor="let item of items" [data]="item"></app-item-nav-bar>
-      </ul>
-  
-      <!-- User Profile Icon 
-      <button class="profile-button" (click)="goToProfile()">👤</button>-->
-      <p-menu [model]="menuItemsProfile" popup #menuProfile></p-menu>
-      <button pButton type="button" icon="pi pi-bars" label="Opciones" 
-              class="p-button-text" (click)="menuProfile.toggle($event)">Usuario</button>
-    </div>
-    
-  </nav>
-  
+    <item-desplegable-navbar
+      *ngFor="let item of itemsDesplegables"
+      [data]="item"
+    ></item-desplegable-navbar>
+
+    <!-- Shopping Cart Icon -->
+
+    <!-- <ul *ngIf="items">
+      <app-item-nav-bar
+        *ngFor="let item of items"
+        [data]="item"
+      ></app-item-nav-bar>
+    </ul> -->
+
+    <p>Bienvenido {{ username }}</p>
+
+    <!-- User Profile Icon -->
+    <p-menu [model]="menuItemsProfile" popup #menuProfile></p-menu>
+    <button
+      pButton
+      type="button"
+      icon="pi pi-bars"
+      label="Opciones"
+      class="p-button-text"
+      (click)="menuProfile.toggle($event)"
+    >
+      Usuario
+    </button>
+  </div>
+</nav>

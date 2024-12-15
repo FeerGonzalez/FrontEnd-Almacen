@@ -1,13 +1,18 @@
 .container {
-  margin: 1vh 4vw;
+  margin: 2vh 4vw;
+  padding: 1vh 0;
 
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
-  grid-column-gap: 0px;
+  grid-column-gap: 1vw;
   grid-row-gap: 0px;
 
   --bg-navbar-color: #301a1a;
+
+  background-color: var(--bg-body-color);
+  border: 2px black solid;
+  border-radius: 8px;
 }
 
 h2,
@@ -40,7 +45,7 @@ button {
 }
 
 .right {
-  padding: 0 33%;
+  padding: 0;
 }
 
 .img {

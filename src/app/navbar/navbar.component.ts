@@ -8,10 +8,19 @@ import { KeycloakService } from 'keycloak-angular';
 import { ItemNavBar } from '../components/item-nav-bar/item-nav-bar-model';
 import { ItemNavBarComponent } from '../components/item-nav-bar/item-nav-bar.component';
 
+import { AuthServiceService } from '../core/services/auth-service.service';
+import { ItemDesplegableNavBarComponent } from '../components/item-desplegable-nav-bar/item-desplegable-nav-bar.component';
+import { ItemDesplegableNavBarModel } from '../components/item-desplegable-nav-bar/item-desplegable-nav-bar-model';
+
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, MenuModule, ItemNavBarComponent],
+  imports: [
+    CommonModule,
+    MenuModule,
+    ItemNavBarComponent,
+    ItemDesplegableNavBarComponent,
+  ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
@@ -22,41 +31,44 @@ export class NavbarComponent {
   menuItems: MenuItem[] = [];
   menuItemsProfile: MenuItem[] = [];
 
-  items: ItemNavBar[] = Array<ItemNavBar>();
+  itemsSimples: ItemNavBar[] = Array();
+  itemsDesplegables: ItemDesplegableNavBarModel[] = Array();
+
+  username: string | null = null;
 
   constructor(
     private router: Router,
-    private keycloakService: KeycloakService
+    private keycloakService: KeycloakService,
+    private authService: AuthServiceService
   ) {}
 
   ngOnInit(): void {
-    this.items = [
+    const tokenData = this.authService.getDecodedToken();
+    this.username = tokenData ? tokenData.name : null;
+
+    this.itemsSimples = [];
+
+    this.itemsDesplegables = [
       {
-        label: 'Opciones',
+        titulo: 'Peliculas',
         childs: [
           {
             label: 'Agregar Película',
             enlace: 'movies-form/new',
           },
+          {
+            label: 'Agregar Película',
+            enlace: 'movies-form/new',
+          },
+          {
+            label: 'Agregar Actor',
+            enlace: 'actores-form',
+          },
+          {
+            label: 'Agregar Género',
+            enlace: 'genero-form',
+          },
         ],
-      },
-    ];
-
-    this.menuItems = [
-      {
-        label: 'Agregar Película',
-        icon: 'pi pi-video',
-        routerLink: 'movies-form/new',
-      },
-      {
-        label: 'Agregar Actor',
-        icon: 'pi pi-user',
-        routerLink: 'actores-form',
-      },
-      {
-        label: 'Agregar Género',
-        icon: 'pi pi-tag',
-        routerLink: 'genero-form',
       },
     ];
 

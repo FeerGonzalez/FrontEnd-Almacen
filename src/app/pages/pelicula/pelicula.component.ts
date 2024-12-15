@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Pelicula } from '../../core/clases/pelicula';
 import { MoviesService } from '../../core/services/movies.service';
 import { CommonModule } from '@angular/common';
+import { AuthServiceService } from '../../core/services/auth-service.service';
 
 @Component({
   selector: 'app-pelicula',
@@ -28,9 +29,16 @@ export class PeliculaComponent {
     actores: [],
   };
 
-  constructor(private movieService: MoviesService) {}
+  username: string | null = null;
+
+  constructor(
+    private movieService: MoviesService,
+    private authService: AuthServiceService
+  ) {}
 
   ngOnInit(): void {
+    const tokenData = this.authService.getDecodedToken();
+    this.username = tokenData ? JSON.stringify(tokenData) : null;
     this.getPeliculaPorID(this.id);
   }
 
