@@ -1,0 +1,27 @@
+.footer {
+  width: 100%;
+  height: 8vh;
+  border: 1px black solid;
+  bottom: 0;
+  margin: 0;
+  padding: 2vh 6vw;
+
+  background-color: var(--bg-bar-color);
+}
+
+ul {
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+}
+
+li {
+  text-decoration: none;
+  color: var(--bg-body-color);
+  font-family: roboto-bold;
+}
+
+#copy {
+  font-family: roboto-regular;
+  font-size: 12px;
+}

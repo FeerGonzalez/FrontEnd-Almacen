@@ -2,24 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { KeycloakService } from 'keycloak-angular';
+import { FooterComponent } from './components/footer/footer.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    RouterOutlet, 
-    RouterModule, 
-    NavbarComponent,
-  ],
+  imports: [RouterOutlet, RouterModule, NavbarComponent, FooterComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'FrontEnd-Almacen_Peliculas';
 
-  constructor(
-    private keycloakService: KeycloakService
-  ) {}
+  constructor(private keycloakService: KeycloakService) {}
 
   /*
   ngOnInit(): void {

@@ -25,10 +25,14 @@ body {
   background-color: var(--bg-body-color);
   background-image: url("assets/images/pattern-cinema-transparent.png");
   background-size: 6vw;
+  margin: 0;
 }
 
 * {
+  --bg-bar-color: #301a1a;
   --bg-body-color: #f0c69c;
+
+  --bg-bar-hover-color: #45362c;
   margin: 0;
   padding: 0;
 }

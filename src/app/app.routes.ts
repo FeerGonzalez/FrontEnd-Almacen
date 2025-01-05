@@ -6,6 +6,8 @@ import { RegisterActorDirectorComponent } from './pages/register-actor-director/
 import { AuthGuard } from './core/auth/authguard';
 import { GeneroFormComponent } from './pages/genero-form/genero-form.component';
 import { PeliculaComponent } from './pages/pelicula/pelicula.component';
+import { AdminGuard } from './core/auth/adminguard';
+import { PostLoginComponent } from './pages/post-login/post-login.component';
 
 export const routes: Routes = [
   {
@@ -13,6 +15,75 @@ export const routes: Routes = [
     component: HomeComponent,
     title: 'Pagina Principal',
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'postLogin',
+    component: PostLoginComponent,
+    canActivate: [AuthGuard],
+  },
+  // RUTAS DE ADMINISTRADOR
+  {
+    path: 'admin',
+    canActivate: [AdminGuard],
+    children: [
+      {
+        path: 'movies',
+        title: 'Peliculas',
+        component: MoviesComponent,
+      },
+      {
+        path: 'pelicula/:id',
+        component: PeliculaComponent,
+        title: 'Pelicula :id',
+      },
+      {
+        path: 'movies-form/:id',
+        component: MoviesFormComponent,
+        title: 'Registrar Pelicula',
+      },
+      {
+        path: 'persona-form',
+        component: RegisterActorDirectorComponent,
+        title: 'Registrar Actor o Director',
+      },
+      {
+        path: 'genero-form',
+        component: GeneroFormComponent,
+        title: 'Registrar Genero',
+      },
+    ],
+  },
+  // RUTAS DEL USER COMUN
+  {
+    path: 'user',
+    children: [
+      {
+        path: 'movies',
+        component: MoviesComponent,
+        title: 'Peliculas',
+      },
+      {
+        path: 'pelicula/:id',
+        component: PeliculaComponent,
+        title: 'Pelicula :id',
+      },
+    ],
+  },
+  // RUTAS DEL INVITADO (NO LOGUEADO)
+  {
+    path: 'guest',
+    children: [
+      {
+        path: 'movies',
+        component: MoviesComponent,
+        title: 'Peliculas',
+      },
+      {
+        path: 'pelicula/:id',
+        component: PeliculaComponent,
+        title: 'Pelicula :id',
+      },
+    ],
   },
   {
     path: 'movies',

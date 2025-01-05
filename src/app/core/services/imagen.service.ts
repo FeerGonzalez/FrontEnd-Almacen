@@ -5,24 +5,21 @@ import { KeycloakService } from 'keycloak-angular';
 import { Pelicula } from '../clases/pelicula';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ImagenService {
-
-  private apiUrl = 'http://localhost:8080/almacen/pelicula/imagen'
+  private apiUrl = 'almacen/pelicula/imagen';
 
   constructor(
-    private http:HttpClient, 
+    private http: HttpClient,
     private keycloakService: KeycloakService
   ) {}
 
-  agregarImagen(pelicula:Pelicula){
+  agregarImagen(pelicula: Pelicula) {
     //return this.http.get<Pelicula>('${this.apiUrl}/${id}');
   }
 
-  updateImagen(pelicula:Pelicula){
-
-  }
+  updateImagen(pelicula: Pelicula) {}
 
   /*
   getImagenes():Observable<Pelicula[]>{

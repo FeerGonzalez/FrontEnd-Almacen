@@ -20,4 +20,12 @@ export class AuthServiceService {
     const payload = token.split('.')[1];
     return JSON.parse(atob(payload));
   }
+
+  isAdmin(): boolean {
+    return this.keycloakService.isUserInRole('ADMIN');
+  }
+
+  isUser(): boolean {
+    return this.keycloakService.isUserInRole('USER');
+  }
 }

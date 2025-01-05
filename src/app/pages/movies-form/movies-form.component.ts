@@ -146,22 +146,6 @@ export class MoviesFormComponent implements OnInit {
     const idsActores = actores
       ? actores.map((actor: { id: number }) => actor.id)
       : [];
-    // pelicula.idsActores = idsActores;
-
-    //Console.Logs
-    /*
-    console.log('Titulo:' + this.movieForm.get('titulo')?.value);
-    console.log('Sinopsis:' + this.movieForm.get('sinopsis')?.value);
-    console.log('Precio:' + this.movieForm.get('precio')?.value);
-    console.log('Condicion:' + condicion.value);
-    console.log('Fecha de Salida:', formattedDate);
-    console.log(pelicula.fechaSalida);
-    console.log ('id genero:' + genero.value);
-    console.log ('ids de Directores:' + idsDirectores);
-    console.log ('ids de Actores:' + idsActores);
-    console.log(this.movieForm.value);
-    console.log(pelicula)
-    */
 
     this.movieService.createMovie(pelicula).subscribe({
       next: () => {

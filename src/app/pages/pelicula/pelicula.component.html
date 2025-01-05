@@ -19,8 +19,6 @@
     </p>
     <h3>Portada</h3>
     <p>{{ pelicula.portada }}</p>
-    <h3>Data Random</h3>
-    <p>{{ username }}</p>
   </div>
   <div class="right">
     <div class="img">
@@ -30,8 +28,19 @@
       </div>
     </div>
     <div class="payment">
-      <button class="comprar">Comprar</button>
+      <app-boton
+        texto="{{ botonComprar.texto }}"
+        [estilo]="{
+          borderRadius: botonComprarEstilo.borderRadius,
+          background: botonComprarEstilo.background,
+          color: botonComprarEstilo.color
+        }"
+      ></app-boton>
       <button class="carrito">Agregar al Carrito</button>
     </div>
+  </div>
+  <div class="fondo">
+    <h3>Data Random</h3>
+    <p>{{ username }}</p>
   </div>
 </div>

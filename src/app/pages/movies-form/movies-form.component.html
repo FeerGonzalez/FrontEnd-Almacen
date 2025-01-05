@@ -1,60 +1,66 @@
 <p-toast></p-toast>
 <div class="flex justify-content-center align-items-center min-h-screen w-full">
-    <p-card header="Formulario Película" class="w-10">
-        <form [formGroup]="movieForm" (ngSubmit)="onSubmit()" class="flex flex-column gap-2">
-            
-            <!-- Campo de Título -->
-            <div class="field flex flex-column gap-1">
-                <label for="titulo">Título</label>
-                <input type="text" pInputText formControlName="titulo" class="w-5" />
-            </div>
+  <p-card header="Formulario Película" class="w-10">
+    <form
+      [formGroup]="movieForm"
+      (ngSubmit)="onSubmit()"
+      class="flex flex-column gap-2"
+    >
+      <!-- Campo de Título -->
+      <div class="field flex flex-column gap-1">
+        <label for="titulo">Título</label>
+        <input type="text" pInputText formControlName="titulo" class="w-5" />
+      </div>
 
-            <!-- Campo de Sinopsis -->
-            <div class="field flex flex-column gap-1">
-                <label for="sinopsis">Sinopsis</label>
-                <textarea 
-                    rows="5" 
-                    cols="30" 
-                    pInputTextarea 
-                    formControlName="sinopsis"
-                    class="w-5">
-                </textarea>
-            </div>
+      <!-- Campo de Sinopsis -->
+      <div class="field flex flex-column gap-1">
+        <label for="sinopsis">Sinopsis</label>
+        <textarea
+          rows="5"
+          cols="30"
+          pInputTextarea
+          formControlName="sinopsis"
+          class="w-5"
+        >
+        </textarea>
+      </div>
 
-            <!-- Campo de Precio -->
-            <div class="field flex flex-column gap-1">
-                <label for="precio">Precio</label>
-                <p-inputNumber inputId="integeronly" formControlName="precio" />
-            </div>
+      <!-- Campo de Precio -->
+      <div class="field flex flex-column gap-1">
+        <label for="precio">Precio</label>
+        <p-inputNumber inputId="integeronly" formControlName="precio" />
+      </div>
 
-            <!-- Campo de Fecha de Salida -->
-            <div class="field flex flex-column gap-1">
-                <label for="fechaSalida">Fecha de salida</label>
-                <p-calendar formControlName="fechaSalida"></p-calendar>
-            </div>
+      <!-- Campo de Fecha de Salida -->
+      <div class="field flex flex-column gap-1">
+        <label for="fechaSalida">Fecha de salida</label>
+        <p-calendar formControlName="fechaSalida"></p-calendar>
+      </div>
 
-            <!-- Campo de Condicion -->
-            <div class="field flex flex-column gap-1">
-                <label for="condicion">Condicion</label>
-                <p-dropdown 
-                    [options]="condicionOptions" 
-                    formControlName="condicion" 
-                    optionLabel="label" 
-                    placeholder="Seleccionar Condicion">
-                </p-dropdown>
-            </div>
+      <!-- Campo de Condicion -->
+      <div class="field flex flex-column gap-1">
+        <label for="condicion">Condicion</label>
+        <p-dropdown
+          [options]="condicionOptions"
+          formControlName="condicion"
+          optionLabel="label"
+          placeholder="Seleccionar Condicion"
+        >
+        </p-dropdown>
+      </div>
 
-            <!-- Selección de Generos -->
-            <div class="field flex flex-column gap-1">
-                <label for="genero">Genero</label>
-                <p-dropdown 
-                    [options]="generoOptions" 
-                    formControlName="genero" 
-                    optionLabel="label" 
-                    placeholder="Seleccionar Genero">
-                </p-dropdown>
-            </div>
-            <!--
+      <!-- Selección de Generos -->
+      <div class="field flex flex-column gap-1">
+        <label for="genero">Genero</label>
+        <p-dropdown
+          [options]="generoOptions"
+          formControlName="genero"
+          optionLabel="label"
+          placeholder="Seleccionar Genero"
+        >
+        </p-dropdown>
+      </div>
+      <!--
             <div class="field flex flex-column gap-1">
                 <label for="generos">Generos</label>
                 <p-multiSelect 
@@ -66,34 +72,44 @@
             </div>
             -->
 
-            <!-- Selección de Directores -->
-            <div class="field flex flex-column gap-1">
-                <label for="directores">Directores</label>
-                <p-multiSelect 
-                    [options]="directoresList" 
-                    formControlName="directores" 
-                    optionLabel="nombre" 
-                    placeholder="Selecciona los directores">
-                </p-multiSelect>
-            </div>
+      <!-- Selección de Directores -->
+      <div class="field flex flex-column gap-1">
+        <label for="directores">Directores</label>
+        <p-multiSelect
+          [options]="directoresList"
+          formControlName="directores"
+          optionLabel="nombre"
+          placeholder="Selecciona los directores"
+        >
+        </p-multiSelect>
+      </div>
 
-            <!-- Selección de Actores -->
-            <div class="field flex flex-column gap-1">
-                <label for="actores">Actores</label>
-                <p-multiSelect 
-                    [options]="actorsList" 
-                    formControlName="actores" 
-                    optionLabel="nombre" 
-                    placeholder="Selecciona los actores">
-                </p-multiSelect>
-            </div>
+      <!-- Selección de Actores -->
+      <div class="field flex flex-column gap-1">
+        <label for="actores">Actores</label>
+        <p-multiSelect
+          [options]="actorsList"
+          formControlName="actores"
+          optionLabel="nombre"
+          placeholder="Selecciona los actores"
+        >
+        </p-multiSelect>
+      </div>
 
-            <!-- Botones de Guardar y Secundario -->
-            <div class="flex gap-2">
-                <p-button label="Guardar" [loading]="isSubmitting" type="submit" [disabled]="movieForm.invalid" />
-                <p-button label="Cancelar" severity="secondary" (click)="onCancel()"></p-button>
-            </div>
-        </form>
-    </p-card>
+      <!-- Botones de Guardar y Secundario -->
+      <div class="flex gap-2">
+        <p-button
+          label="Guardar"
+          [loading]="isSubmitting"
+          type="submit"
+          [disabled]="movieForm.invalid"
+        />
+        <p-button
+          label="Cancelar"
+          severity="secondary"
+          (click)="onCancel()"
+        ></p-button>
+      </div>
+    </form>
+  </p-card>
 </div>
-

@@ -1,3 +1,12 @@
-<button [disabled]="disabled" (click)="handleClick()" class="btn btn-primary">
+<button
+  [disabled]="disabled"
+  (click)="handleClick()"
+  class="boton"
+  [ngStyle]="{
+    borderRadius: estilo.borderRadius,
+    backgroundColor: estilo.background,
+    color: estilo.color
+  }"
+>
   {{ texto }}
 </button>

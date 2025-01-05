@@ -50,12 +50,8 @@ export class NavbarComponent {
 
     this.itemsDesplegables = [
       {
-        titulo: 'Peliculas',
+        titulo: 'Agregar Entidad',
         childs: [
-          {
-            label: 'Agregar Película',
-            enlace: 'movies-form/new',
-          },
           {
             label: 'Agregar Película',
             enlace: 'movies-form/new',

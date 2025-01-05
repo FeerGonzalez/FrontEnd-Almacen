@@ -1,5 +1,5 @@
 export class Director {
-    id !: number;
-    nombre !: string;
-    apellido !: string;
+  id!: number;
+  nombre!: string;
+  apellido!: string;
 }

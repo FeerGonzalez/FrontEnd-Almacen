@@ -4,33 +4,10 @@
 
   <!-- Right Side - Cart and User Profile -->
   <div class="navbar-right">
-    <!-- <p-menu [model]="menuItems" popup #menu></p-menu>
-    <button
-      pButton
-      type="button"
-      icon="pi pi-bars"
-      label="Opciones"
-      class="p-button-text"
-      (click)="menu.toggle($event)"
-    >
-      Opciones
-    </button> -->
-
     <item-desplegable-navbar
       *ngFor="let item of itemsDesplegables"
       [data]="item"
     ></item-desplegable-navbar>
-
-    <!-- Shopping Cart Icon -->
-
-    <!-- <ul *ngIf="items">
-      <app-item-nav-bar
-        *ngFor="let item of items"
-        [data]="item"
-      ></app-item-nav-bar>
-    </ul> -->
-
-    <p>Bienvenido {{ username }}</p>
 
     <!-- User Profile Icon -->
     <p-menu [model]="menuItemsProfile" popup #menuProfile></p-menu>
@@ -42,7 +19,7 @@
       class="p-button-text"
       (click)="menuProfile.toggle($event)"
     >
-      Usuario
+      {{ username }}
     </button>
   </div>
 </nav>
