@@ -88,9 +88,5 @@ button {
 }
 
 .comprar {
-  width: 34%;
-}
-
-.carrito {
-  width: 66%;
+  width: 100%;
 }

@@ -32,19 +32,16 @@ export class PeliculaComponent {
   };
 
   botonComprarEstilo: BotonStyle = {
-    borderRadius: '4px 4px 4px 16px',
+    borderRadius: '4px 4px 8px 8px',
     background: 'var(--bg-bar-color)',
     color: 'var(--bg-body-color)',
+    width: '16vw',
   };
 
   botonComprar = {
-    texto: 'Comprar',
+    texto: 'Agregar al Carrito',
     disabled: false,
-    estilo: {
-      borderRadius: '4px 4px 4px 16px',
-      background: 'var(--bg-bar-color)',
-      color: 'var(--bg-body-color)',
-    },
+    estilo: this.botonComprarEstilo,
   };
 
   username: string | null = null;

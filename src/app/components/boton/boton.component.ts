@@ -16,6 +16,7 @@ export class BotonComponent {
     borderRadius: '',
     background: '',
     color: '',
+    width: '',
   };
 
   @Output() onClick = new EventEmitter<void>();
