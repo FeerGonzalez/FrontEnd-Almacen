@@ -1,0 +1,25 @@
+<nav class="navbar">
+  <!-- Store Name - Clickable Link -->
+  <a routerLink="/" class="navbar-brand">Tienda de Peliculas</a>
+
+  <!-- Right Side - Cart and User Profile -->
+  <div class="navbar-right">
+    <item-desplegable-navbar
+      *ngFor="let item of itemsDesplegables"
+      [data]="item"
+    ></item-desplegable-navbar>
+
+    <!-- User Profile Icon -->
+    <p-menu [model]="menuItemsProfile" popup #menuProfile></p-menu>
+    <button
+      pButton
+      type="button"
+      icon="pi pi-bars"
+      label="Opciones"
+      class="p-button-text"
+      (click)="menuProfile.toggle($event)"
+    >
+      {{ username }}
+    </button>
+  </div>
+</nav>

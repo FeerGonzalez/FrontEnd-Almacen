@@ -10,18 +10,23 @@ import { Pelicula } from '../clases/pelicula';
 export class ImagenService {
 
   private apiUrl = 'http://localhost:8080/almacen/pelicula/imagen'
+  private externalUrl = 'https://k8s-lia.unrn.edu.ar/grupo02'
 
   constructor(
     private http:HttpClient, 
     private keycloakService: KeycloakService
   ) {}
 
-  agregarImagen(pelicula:Pelicula){
-    //return this.http.get<Pelicula>('${this.apiUrl}/${id}');
+  agregarImagen(id:number, imagen:ImageBitmap): void{
+    this.http.get<ImageBitmap>('${this.apiUrl}/${id}');
   }
 
-  updateImagen(pelicula:Pelicula){
+  updateImagen(id:number, imagen:ImageBitmap){
+    return this.http.put('${this.apiUrl}/${id}', imagen);
+  }
 
+  getImagen(nombreImagen:String, tamanio:String){
+    return this.http.get<Pelicula>('${this.apiUrl}/${nombreImagen}');
   }
 
   /*

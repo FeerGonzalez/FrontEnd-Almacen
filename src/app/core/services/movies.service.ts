@@ -24,7 +24,7 @@ export class MoviesService {
     return this.http.get<{ data: Pelicula[] }>(this.apiUrl).pipe(map(response => response.data));
   }
 
-  getMoviesById(id:number):Observable<Pelicula>{
+  getMovieById(id:number):Observable<Pelicula>{
     return this.http.get<Pelicula>('${this.apiUrl}/${id}');
   }
 

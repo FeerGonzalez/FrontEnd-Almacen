@@ -1,0 +1,13 @@
+.boton {
+    height: 4vh;
+    border: 0;
+  
+    background-color: var(--bg-bar-color);
+    color: var(--bg-body-color);
+    font-family: roboto-regular;
+  }
+  
+  .boton:hover {
+    background-color: var(--bg-bar-hover-color);
+    font-family: roboto-bold;
+  }

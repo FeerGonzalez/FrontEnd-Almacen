@@ -90,7 +90,7 @@ export class MoviesFormComponent implements OnInit {
   }
 
   getMovieById(id: number) {
-    this.movieService.getMoviesById(id).subscribe({
+    this.movieService.getMovieById(id).subscribe({
       next: (foundMovie) => {
         this.movieForm.patchValue(foundMovie);
       },
@@ -129,15 +129,15 @@ export class MoviesFormComponent implements OnInit {
     pelicula.condicion = condicion.value;
 
     const genero = this.movieForm.get('genero')?.value;
-    pelicula.idGenero = genero.value;
+    pelicula.genero = genero.value;
 
     const directores = this.movieForm.get('directores')?.value;
     const idsDirectores = directores ? directores.map((director: { id: number }) => director.id) : [];
-    pelicula.idsDirectores = idsDirectores;
+    pelicula.directores = idsDirectores;
 
     const actores = this.movieForm.get('actores')?.value;
     const idsActores = actores ? actores.map((actor: { id: number }) => actor.id) : [];
-    pelicula.idsActores = idsActores;
+    pelicula.actores = idsActores;
     
     //Console.Logs
     /*

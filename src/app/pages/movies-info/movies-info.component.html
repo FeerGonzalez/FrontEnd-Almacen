@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="left">
+    <h2>{{ pelicula.titulo }}</h2>
+    <h3>Sinopsis</h3>
+    <p>{{ pelicula.sinopsis }}</p>
+    <h3>Genero</h3>
+    <p>{{ pelicula.genero.nombre }}</p>
+    <h3>Fecha de Salida</h3>
+    <p>{{ pelicula.fechaSalida }}</p>
+    <h3>Condicion</h3>
+    <p>{{ pelicula.condicion }}</p>
+    <h3>Director</h3>
+    <p *ngFor="let director of pelicula.directores">
+      {{ director.nombre + " " + director.apellido }}
+    </p>
+    <h3>Actores</h3>
+    <p *ngFor="let actor of pelicula.actores">
+      {{ actor.nombre + " " + actor.apellido }}
+    </p>
+    <h3>Portada</h3>
+    <p>{{ pelicula.portada }}</p>
+  </div>
+  <div class="right">
+    <div class="img">
+      <div class="relleno"></div>
+      <div class="precio">
+        <p>{{ pelicula.precio }}</p>
+      </div>
+    </div>
+    <div class="payment">
+      <app-boton
+        texto="{{ botonComprar.texto }}"
+        [estilo]="{
+          borderRadius: botonComprarEstilo.borderRadius,
+          background: botonComprarEstilo.background,
+          color: botonComprarEstilo.color,
+          width: botonComprarEstilo.width
+        }"
+      ></app-boton>
+    </div>
+  </div>
+  <div class="fondo">
+    <h3>Data Random</h3>
+    <p>{{ username }}</p>
+  </div>
+</div>
+
+<!--
+<div class="cards-container">
+    <p-card *ngFor="let movie of moviesList; trackBy: trackById"
+            [header]="movie.titulo"
+            [style]="{ width: '360px' }"
+            class="m-2">
+  
+      <ng-template pTemplate="header">
+        <img 
+          [src]="movie.imagenPequena || 'https://k8s-lia.unrn.edu.ar/grupo02/1_LARGE'" 
+          alt="Imagen de película" 
+          style="width: 100%; height: 100%; object-fit: cover;"
+        />
+      </ng-template>
+  
+      <p>
+        Sinopsis: {{ movie.sinopsis }}
+      </p>
+      <p>
+        Fecha de salida: {{ movie.fechaSalida }} 
+      </p>
+      <p>
+        Genero: {{ movie.genero }}
+      </p>
+      <p>
+        Precio: {{ movie.precio }}
+      </p>
+      <p>
+        Directores: {{ movie.precio }}
+      </p>
+      <p>
+        Actores: {{ movie.precio }}
+      </p>
+      
+  
+      <ng-template pTemplate="footer">
+        <div class="flex gap-3 mt-1">
+          
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+-->
